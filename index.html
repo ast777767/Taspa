@@ -13,7 +13,6 @@
   --brand:#ff4f93; --brand-2:#ff91c2;
   --ok:#28b487; --warn:#f6b555; --bad:#ff5d5d;
   --stroke:#ffd3e4; --shadow:0 16px 50px rgba(255,79,147,.18);
-  --r:16px;
 }
 @media (prefers-color-scheme: dark){
   :root{ --bg:#1a1015; --bg2:#23131b; --glass:#24171dcc; --card:#2a1921;
@@ -34,31 +33,24 @@ body{
 /* ========= ШАПКА ========= */
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .brand{display:flex;gap:12px;align-items:center}
-.logo{
-  width:44px;height:44px;border-radius:12px;
+.logo{width:44px;height:44px;border-radius:12px;
   background:conic-gradient(from 210deg,#ffb2d2,#ff4f93 40%,#ff91c2 75%,#ffa8d7 100%);
-  position:relative;box-shadow:0 10px 20px #ff4f9350, inset 0 0 40px #ffffff22;
-}
-.logo::after{content:"";position:absolute;inset:7px;border-radius:10px;background:linear-gradient(135deg,#ffffff77,transparent)}
-h1{margin:0;font-size:22px;letter-spacing:.2px}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:linear-gradient(135deg,var(--brand),#ff73ad);color:#fff;font-weight:700;box-shadow:0 8px 20px #ff4f9370}
+  position:relative;box-shadow:0 10px 20px #ff4f9350, inset 0 0 40px #ffffff22}
+h1{margin:0;font-size:22px}
+.badge{padding:7px 12px;border-radius:999px;background:linear-gradient(135deg,var(--brand),#ff73ad);color:#fff;font-weight:700;box-shadow:0 8px 20px #ff4f9370}
 
 /* ========= HERO ========= */
-.hero{
-  margin-top:18px;border-radius:22px;padding:22px;border:1px solid var(--stroke);
-  background:var(--glass);backdrop-filter:blur(8px);box-shadow:var(--shadow);overflow:hidden
-}
+.hero{margin-top:18px;border-radius:22px;padding:22px;border:1px solid var(--stroke);
+  background:var(--glass);backdrop-filter:blur(8px);box-shadow:var(--shadow)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 @media(max-width:920px){.hero-grid{grid-template-columns:1fr}}
 .hero h2{margin:0 0 6px;font-size:30px}
 .hero p{margin:8px 0 16px}
 .stats{display:flex;gap:10px;flex-wrap:wrap}
 .stat{padding:10px 14px;border-radius:14px;border:1px dashed var(--stroke);background:var(--card)}
-.illus{border:1px solid var(--stroke);border-radius:18px;background:var(--card);display:grid;place-items:center;min-height:220px;position:relative;overflow:hidden}
-.ribbon{
-  width:140px;height:140px;border:12px solid var(--brand);border-radius:80% 30% 70% 40% / 55% 45% 65% 35%;
-  transform:rotate(25deg);filter:drop-shadow(0 12px 26px #ff4f9377);animation:float 6s ease-in-out infinite
-}
+.illus{border:1px solid var(--stroke);border-radius:18px;background:var(--card);display:grid;place-items:center;min-height:220px}
+.ribbon{width:140px;height:140px;border:12px solid var(--brand);border-radius:80% 30% 70% 40%/55% 45% 65% 35%;
+  transform:rotate(25deg);filter:drop-shadow(0 12px 26px #ff4f9377);animation:float 6s ease-in-out infinite}
 @keyframes float{0%{transform:translateY(0) rotate(25deg)}50%{transform:translateY(-10px) rotate(20deg)}100%{transform:translateY(0) rotate(25deg)}}
 
 /* ========= ТАБЫ ========= */
@@ -100,61 +92,49 @@ label{font-weight:700;font-size:14px}
 .back{position:absolute;inset:0;transform:rotateY(180deg);backface-visibility:hidden}
 .front{backface-visibility:hidden}
 
-/* ========= АЧИВКИ/КОНФЕТТИ ========= */
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;border:1px solid var(--stroke);background:var(--card);font-size:13px}
-#confetti{position:fixed;inset:0;pointer-events:none}
-.fade-in{animation:fade .5s ease both}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* ========= ОБУЧЕНИЕ: надёжная сетка (фикс «ездит») ========= */
-.edu-wrap{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:16px;
-}
-.edu-wrap>.card{min-width:0;overflow:hidden}
-#lessons .card{overflow:hidden}
-#lessons .card>div{min-width:0}
-#lessons label{display:flex;align-items:flex-start;gap:10px;min-width:0}
-#lessons label span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
-.badge-chip{flex-shrink:0}
+/* ========= ОБУЧЕНИЕ: фиксы текста и мобилки ========= */
+.edu-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
 #edu .card{min-width:0}
+.li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.li input{width:18px;height:18px}
+.li span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
 #edu h4{margin:10px 0 6px}
 #edu ul,#edu ol{padding-left:20px;margin:6px 0}
 @media(max-width:900px){.edu-wrap{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .wrap{padding:14px}
+  .panel{padding:14px}
+  .hero-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<canvas id="confetti"></canvas>
+<canvas id="confetti" style="position:fixed;inset:0;pointer-events:none"></canvas>
 <div class="wrap">
-  <!-- ===== ШАПКА ===== -->
   <header>
     <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
+      <div class="logo"></div>
       <h1>Qyzgylt Taspa</h1>
       <span class="badge">Розовая лента</span>
     </div>
   </header>
 
-  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="hero-grid">
       <div>
-        <h2>Знание + Скрининг + Привычка заботы о себе</h2>
-        <p class="muted">Короткие уроки, экспресс-скрининг, планер. Всё хранится локально на твоём устройстве.</p>
+        <h2>Знание • Скрининг • Забота о себе</h2>
+        <p class="muted">Короткие уроки, экспресс-скрининг, планер. Всё хранится локально.</p>
         <div class="stats">
           <div class="stat">📚 Уроки с прогрессом</div>
           <div class="stat">🎯 Индикатор риска</div>
           <div class="stat">🗓️ Экспорт в календарь</div>
-          <div class="stat">🏅 Ачивки за активность</div>
+          <div class="stat">🏅 Ачивки</div>
         </div>
       </div>
       <div class="illus"><div class="ribbon" aria-hidden="true"></div></div>
     </div>
   </section>
 
-  <!-- ===== ТАБЫ ===== -->
   <nav class="tabs" id="tabs">
     <button class="tab active" data-target="edu">Обучение</button>
     <button class="tab" data-target="screen">Скрининг</button>
@@ -163,50 +143,44 @@ label{font-weight:700;font-size:14px}
     <button class="tab" data-target="about">О сайте</button>
   </nav>
 
-  <!-- ===== ОБУЧЕНИЕ (2 колонки, всё на месте) ===== -->
+  <!-- ===== ОБУЧЕНИЕ ===== -->
   <section class="panel" id="edu">
     <div class="edu-wrap">
       <!-- Левая колонка -->
       <div class="card">
         <h3>Краткие уроки</h3>
         <p class="muted">Отмечай чекбоксы — прогресс сохраняется автоматически.</p>
-        <div class="progress"><span id="eduBar"></span></div>
-        <div id="lessons" class="fade-in"></div>
+        <div class="progress" aria-label="Прогресс обучения"><span id="eduBar"></span></div>
+        <div id="lessons"></div>
         <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn ghost" id="resetEdu">Сбросить прогресс</button>
           <button class="btn secondary" id="exportEdu">Экспорт (.json)</button>
           <input type="file" id="importEdu" accept="application/json" hidden>
           <button class="btn secondary" id="importEduBtn">Импорт</button>
         </div>
-        <div class="chips" style="margin-top:10px">
-          <div class="chip" id="achv1">🏅 Ученица: 50% уроков</div>
-          <div class="chip" id="achv2">🌟 Эксперт: 100% уроков</div>
-        </div>
+        <div class="badge-chip" id="achv1" style="margin-top:10px">🏅 Ученица: 50% уроков</div>
+        <div class="badge-chip" id="achv2" style="margin-top:6px">🌟 Эксперт: 100% уроков</div>
       </div>
 
-      <!-- Правая колонка (статичный, ничего не прячется) -->
+      <!-- Правая колонка -->
       <div class="card">
         <h3>Содержание уроков</h3>
-
         <h4>Факторы риска</h4>
         <ul>
           <li>Возраст &gt; 40, семейный анамнез (1-я линия), BRCA1/2</li>
           <li>Масса тела, низкая активность, длительная гормонотерапия</li>
         </ul>
-
         <h4>Симптомы</h4>
         <ul>
           <li>Уплотнение/узелок, изменение формы и кожи</li>
           <li>Втяжение соска/кожи, выделения, «лимонная корка»</li>
         </ul>
-
         <h4>Самообследование</h4>
         <ol>
           <li>Осмотр в зеркале</li>
-          <li>Пальпация по схеме стоя/лежа</li>
+          <li>Пальпация стоя/лежа по схеме</li>
           <li>Ежемесячно после менструации</li>
         </ol>
-
         <h4>Скрининг</h4>
         <p>Маммография/УЗИ — по возрасту и риску, по назначению врача.</p>
       </div>
@@ -215,10 +189,10 @@ label{font-weight:700;font-size:14px}
 
   <!-- ===== СКРИНИНГ ===== -->
   <section class="panel" id="screen" hidden>
-    <div class="grid-2">
+    <div class="edu-wrap">
       <div class="card">
         <h3>Предварительный скрининг</h3>
-        <p class="muted">Не диагноз. Подсказка: нужна ли консультация врача.</p>
+        <p class="muted">Это не диагноз. Помогает понять, нужна ли консультация врача.</p>
         <form id="quiz" autocomplete="off">
           <div class="row"><label>Возраст</label><input id="age" type="number" min="10" placeholder="напр., 25" required></div>
           <div class="row"><label>Семейный анамнез (1-я линия)</label>
@@ -256,7 +230,7 @@ label{font-weight:700;font-size:14px}
 
   <!-- ===== ПЛАНЕР ===== -->
   <section class="panel" id="plan" hidden>
-    <div class="grid-2">
+    <div class="edu-wrap">
       <div class="card">
         <h3>Напоминание о самообследовании</h3>
         <div class="row"><label>Название</label><input id="remTitle" placeholder="Самообследование груди"></div>
@@ -267,9 +241,7 @@ label{font-weight:700;font-size:14px}
           <button class="btn secondary" id="exportICS">Экспорт .ics</button>
           <button class="btn ghost" id="clearRems">Очистить список</button>
         </div>
-        <div class="chips" style="margin-top:10px">
-          <div class="chip" id="achv3">⏰ Первая привычка: создано 1 напоминание</div>
-        </div>
+        <div class="badge-chip" id="achv3" style="margin-top:10px">⏰ Первая привычка: создано 1 напоминание</div>
       </div>
       <div class="card">
         <h3>Мои напоминания</h3>
@@ -308,7 +280,7 @@ label{font-weight:700;font-size:14px}
       <li>💾 Данные хранятся локально (<code>localStorage</code>).</li>
       <li>🗂️ Экспорт/импорт прогресса (JSON).</li>
       <li>🗓️ Экспорт напоминаний в календарь (.ics).</li>
-      <li>🎀 Розовое оформление в поддержку темы «розовой ленты».</li>
+      <li>🎀 Розовая тема «Qyzgylt Taspa».</li>
     </ul>
     <p class="muted" style="font-size:12px">Образовательный контент. Не заменяет консультацию врача.</p>
   </section>
@@ -322,13 +294,13 @@ const $=(s,r=document)=>r.querySelector(s);
 const $all=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
 function download(name,content,type='application/octet-stream'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
-function toICSItem({title,note,date}){const dt=new Date(date);if(isNaN(dt))return'';const p=n=>String(n).padStart(2,'0');const y=dt.getUTCFullYear(),m=p(dt.getUTCMonth()+1),d=p(dt.getUTCDate());const start=`${y}${m}${d}T090000Z`,end=`${y}${m}${d}T093000Z`;return`BEGIN:VEVENT
+function toICSItem({title,note,date}){const dt=new Date(date);if(isNaN(dt))return'';const p=n=>String(n).padStart(2,'0');const y=dt.getUTCFullYear(),m=p(dt.getUTCMonth()+1),d=p(dt.getDate());const start=`${y}${m}${d}T090000Z`,end=`${y}${m}${d}T093000Z`;return`BEGIN:VEVENT
 UID:${crypto.randomUUID()}
 DTSTAMP:${y}${m}${d}T000000Z
 DTSTART:${start}
 DTEND:${end}
-SUMMARY:${(title||'Самообследование').replace(/\n/g,' ')}
-DESCRIPTION:${(note||'Ежемесячное самообследование').replace(/\n/g,' ')}
+SUMMARY:${(title||'Самообследование').replace(/\\n/g,' ')}
+DESCRIPTION:${(note||'Ежемесячное самообследование').replace(/\\n/g,' ')}
 END:VEVENT`;}
 
 /* ===== ТАБЫ ===== */
@@ -337,7 +309,7 @@ $all('.tab').forEach(b=>b.addEventListener('click',()=>{ $all('.tab').forEach(x=
 /* ===== УРОКИ ===== */
 const LESSONS=[
   {id:'risk',title:'Факторы риска',bullets:['Возраст, семейный анамнез, образ жизни','Контроль веса/активности снижает риск']},
-  {id:'sym', title:'Симптомы',bullets:['Уплотнение, изменение формы','Выделения, «лимонная корка», втяжение']},
+  {id:'sym', title:'Симптомы',bullets:['Уплотнение, изменение формы/кожи','Выделения, втяжение, «лимонная корка»']},
   {id:'sbe', title:'Самообследование',bullets:['Осмотр в зеркале','Пальпация по схеме ежемесячно']},
   {id:'scr', title:'Скрининг у врача',bullets:['По возрасту и риску','Маммография/УЗИ по назначению врача']}
 ];
@@ -348,22 +320,25 @@ function renderLessons(){
   for(const L of LESSONS){
     const st=lessonState[L.id]||Array(L.bullets.length).fill(false);
     total+=st.length; done+=st.filter(Boolean).length;
-    const card=document.createElement('div'); card.className='card fade-in';
+    const card=document.createElement('div'); card.className='card';
     card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
       <strong>${L.title}</strong><span class="badge-chip">${st.filter(Boolean).length}/${st.length}</span>
     </div>
     <div style="display:grid;gap:8px;margin-top:8px">${L.bullets.map((t,i)=>`
-      <label><input type="checkbox" data-id="${L.id}" data-idx="${i}" ${st[i]?'checked':''}/> <span>${t}</span></label>`).join('')}
-    </div>`;
+      <div class="li">
+        <input type="checkbox" data-id="${L.id}" data-idx="${i}" ${st[i]?'checked':''}/>
+        <span>${t}</span>
+      </div>`).join('')}</div>`;
     box.appendChild(card);
   }
-  const pct = total? Math.round(done/total*100):0;
+  const pct= total? Math.round(done/total*100):0;
   $('#eduBar').style.width=pct+'%';
-  if($('#achv1')) $('#achv1').style.background = pct>=50 ? 'linear-gradient(135deg,#fff8,#eafff0)' : '';
-  if($('#achv2')) $('#achv2').style.background = pct>=100 ? 'linear-gradient(135deg,#fff8,#fff0f6)' : '';
-  if(pct===100) confettiStart(1000);
+  $('#achv1').style.background = pct>=50 ? 'linear-gradient(135deg,#fff8,#eafff0)' : '';
+  $('#achv2').style.background = pct>=100 ? 'linear-gradient(135deg,#fff8,#fff0f6)' : '';
+  if(pct===100) confettiStart(1200);
 }
 renderLessons();
+
 $('#lessons').addEventListener('change',e=>{
   if(e.target.type==='checkbox'){
     const id=e.target.dataset.id, idx=+e.target.dataset.idx;
