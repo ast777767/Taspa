@@ -134,6 +134,25 @@ label{font-weight:700;font-size:14px}
 #edu .card{min-width:0}
 #edu details, #edu ul, #edu ol{max-width:100%;word-wrap:break-word}
 @media(max-width:900px){.edu-wrap{grid-template-columns:1fr}}
+  /* --- FIX: правый столбец в обучении едет на iPad --- */
+.edu-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr); /* не даём колонкам расползаться */
+  gap:16px;
+}
+.edu-wrap > .card{min-width:0; overflow:hidden;}      /* важный клип от переполнения */
+
+/* элементы внутри левой колонки */
+#lessons .card{overflow:hidden;}
+#lessons .card > div{min-width:0;}
+#lessons label{display:flex; align-items:flex-start; gap:10px; min-width:0;}
+#lessons label span{min-width:0; overflow-wrap:anywhere; word-break:break-word;}
+.badge-chip{flex-shrink:0;} /* счётчик X/Y не давит текст */
+
+/* элементы правой колонки */
+#edu .card{min-width:0;}
+#edu details, #edu summary, #edu ul, #edu ol{min-width:0; max-width:100%; overflow-wrap:anywhere; word-break:break-word;}
+#edu ul, #edu ol{padding-left:20px;}
 </style>
 </head>
 <body>
@@ -188,6 +207,7 @@ label{font-weight:700;font-size:14px}
           <button class="btn secondary" id="exportEdu">Экспорт (.json)</button>
           <input type="file" id="importEdu" accept="application/json" hidden>
           <button class="btn secondary" id="importEduBtn">Импорт</button>
+          
         </div>
       </div>
       <!-- Правая колонка -->
